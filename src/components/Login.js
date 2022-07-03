@@ -4,46 +4,65 @@ import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import GoogleButton from "react-google-button";
 import { useUserAuth } from "../context/UserAuthContext";
+import emailjs from "emailjs-com";
 import "../App.css";
+
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
+  // const [dataemail, setDataEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { logIn, googleSignIn } = useUserAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const sendEmail = (e) => {
+    
     e.preventDefault();
-    setError("");
-    try {
-      await logIn(email, password);
-      navigate("/home");
-    } catch (err) {
-      setError(err.message);
-    }
+
+    emailjs
+      .sendForm(
+        "service_nqofntv",
+        "template_eygzp4s",
+        e.target,
+
+        "ftEJaWAOJijuRDJon"
+      )
+      .then((result) => {
+        alert('email sent successfully');
+    }, (error) => {
+        alert('error sending email');
+    });
+    //clears the form after sending the email
+    e.target.reset();
   };
+
 
   const handleGoogleSignIn = async (e) => {
     e.preventDefault();
     try {
       await googleSignIn();
-      navigate("/home");
+      navigate("/test");
     } catch (error) {
       console.log(error.message);
     }
   };
+
+
+
 
   return (
     <>
       <div className="p-4 box">
         <h2 className="mb-3 text-center"> Login</h2>
         {error && <Alert variant="danger">{error}</Alert>}
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={sendEmail}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Control
               type="email"
               placeholder="Email address"
+              name="email"
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
@@ -57,9 +76,11 @@ const Login = () => {
           </Form.Group>
 
           <div className="d-grid gap-2">
-            <Button variant="primary" type="Submit">
+            {/* <Link to= "/test"> */}
+            <Button variant="primary" type="Submit" >
               Log In
             </Button>
+            {/* </Link> */}
           </div>
         </Form>
         <hr />
@@ -76,6 +97,7 @@ const Login = () => {
               Sign in with Phone
             </Button>
           </div>
+         
           <div className="text-center mt-3">
             <Link to="/reset">Forgot Password</Link>
           </div>

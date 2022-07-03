@@ -8,6 +8,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { UserAuthContextProvider } from "./context/UserAuthContext";
 import PhoneSignup from "./components/PhoneSignup";
 import Reset from "./components/Reset";
+import Test from "./components/Test";
 import Dashboard from "./components/Dashboard";
 function App() {
   return (
@@ -17,10 +18,10 @@ function App() {
           <UserAuthContextProvider>
             <Routes>
               <Route
-                path="/home"
+                path="/test"
                 element={
                   <ProtectedRoute>
-                    <Home />
+                    <Test />
                   </ProtectedRoute>
                 }
               />
