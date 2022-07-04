@@ -18,7 +18,7 @@ const Login = ({ email, setEmail, password, setPassword, code, setCode }) => {
     var codedigt = Math.floor(100000 + Math.random() * 900000);
 
     var emaildata = { email: email, vcode: codedigt };
-    console.log(emaildata);
+    // console.log(emaildata);
     e.preventDefault();
 
     emailjs
@@ -46,7 +46,7 @@ const Login = ({ email, setEmail, password, setPassword, code, setCode }) => {
     e.preventDefault();
     try {
       await googleSignIn();
-      navigate("/test");
+      navigate("/chatarea");
     } catch (error) {
       console.log(error.message);
     }
@@ -76,11 +76,9 @@ const Login = ({ email, setEmail, password, setPassword, code, setCode }) => {
           </Form.Group>
 
           <div className="d-grid gap-2">
-            {/* <Link to= "/test"> */}
             <Button variant="primary" type="Submit">
               Log In
             </Button>
-            {/* </Link> */}
           </div>
         </Form>
         <hr />

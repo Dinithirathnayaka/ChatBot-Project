@@ -26,7 +26,7 @@ function Reset() {
           className="reset__btn "
           onClick={() => sendPasswordReset(email)}
         >
-          Send password reset email
+          Send
         </button>
         <div>
           Don't have an account? <Link to="/signup">Signup</Link> now.

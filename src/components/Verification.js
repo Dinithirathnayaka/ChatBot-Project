@@ -20,7 +20,7 @@ function Verification(props) {
       try {
         await logIn(email, password);
         alert("You logged successfully");
-        navigate("/test");
+        navigate("/chatarea");
         console.log("logged");
       } catch (error) {
         console.log(error.message);

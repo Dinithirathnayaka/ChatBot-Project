@@ -37,7 +37,7 @@ const PhoneSignup = () => {
     setError("");
     try {
       await confirmObj.confirm(otp);
-      navigate("/home");
+      navigate("/chatarea");
     } catch (err) {
       setError(err.message);
     }

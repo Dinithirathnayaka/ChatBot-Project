@@ -1,14 +1,13 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import Home from "./components/Home";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { UserAuthContextProvider } from "./context/UserAuthContext";
 import PhoneSignup from "./components/PhoneSignup";
 import Reset from "./components/Reset";
-import Test from "./components/Test";
+import ChatArea from "./components/ChatArea";
 import Verification from "./components/Verification";
 import Dashboard from "./components/Dashboard";
 import { createContext, useState } from "react";
@@ -24,10 +23,10 @@ function App() {
           <UserAuthContextProvider>
             <Routes>
               <Route
-                path="/test"
+                path="/chatarea"
                 element={
                   <ProtectedRoute>
-                    <Test />
+                    <ChatArea />
                   </ProtectedRoute>
                 }
               />
