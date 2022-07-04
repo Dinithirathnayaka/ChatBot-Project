@@ -5,39 +5,42 @@ import { Button } from "react-bootstrap";
 import GoogleButton from "react-google-button";
 import { useUserAuth } from "../context/UserAuthContext";
 import emailjs from "emailjs-com";
+import Verification from "../components/Verification";
 import "../App.css";
 
-
-
-const Login = () => {
-  const [email, setEmail] = useState("");
-  // const [dataemail, setDataEmail] = useState("");
-  const [password, setPassword] = useState("");
+const Login = ({ email, setEmail, password, setPassword, code, setCode }) => {
+  const [dataemail, setDataEmail] = useState("ab");
   const [error, setError] = useState("");
   const { logIn, googleSignIn } = useUserAuth();
   const navigate = useNavigate();
 
   const sendEmail = (e) => {
-    
+    var codedigt = Math.floor(100000 + Math.random() * 900000);
+
+    var emaildata = { email: email, vcode: codedigt };
+    console.log(emaildata);
     e.preventDefault();
 
     emailjs
-      .sendForm(
+      .send(
         "service_nqofntv",
         "template_eygzp4s",
-        e.target,
-
+        emaildata,
         "ftEJaWAOJijuRDJon"
       )
-      .then((result) => {
-        alert('email sent successfully');
-    }, (error) => {
-        alert('error sending email');
-    });
+      .then(
+        (result) => {
+          alert("Please check your email to verify your email address.");
+          setCode(codedigt);
+          navigate("/verification");
+        },
+        (error) => {
+          alert("error sending email");
+        }
+      );
     //clears the form after sending the email
     e.target.reset();
   };
-
 
   const handleGoogleSignIn = async (e) => {
     e.preventDefault();
@@ -48,9 +51,6 @@ const Login = () => {
       console.log(error.message);
     }
   };
-
-
-
 
   return (
     <>
@@ -77,7 +77,7 @@ const Login = () => {
 
           <div className="d-grid gap-2">
             {/* <Link to= "/test"> */}
-            <Button variant="primary" type="Submit" >
+            <Button variant="primary" type="Submit">
               Log In
             </Button>
             {/* </Link> */}
@@ -97,7 +97,7 @@ const Login = () => {
               Sign in with Phone
             </Button>
           </div>
-         
+
           <div className="text-center mt-3">
             <Link to="/reset">Forgot Password</Link>
           </div>

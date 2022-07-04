@@ -9,8 +9,14 @@ import { UserAuthContextProvider } from "./context/UserAuthContext";
 import PhoneSignup from "./components/PhoneSignup";
 import Reset from "./components/Reset";
 import Test from "./components/Test";
+import Verification from "./components/Verification";
 import Dashboard from "./components/Dashboard";
+import { createContext, useState } from "react";
 function App() {
+  const [email, setEmail] = useState("");
+  const [code, setCode] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <Container style={{ width: "400px" }}>
       <Row>
@@ -25,11 +31,29 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-              <Route path="/" element={<Login />} />
+              <Route
+                path="/"
+                element={
+                  <Login
+                    email={email}
+                    setEmail={setEmail}
+                    password={password}
+                    setPassword={setPassword}
+                    code={code}
+                    setCode={setCode}
+                  />
+                }
+              />
               <Route path="/phonesignup" element={<PhoneSignup />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/reset" element={<Reset />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route
+                path="/verification"
+                element={
+                  <Verification email={email} password={password} code={code} />
+                }
+              />
             </Routes>
           </UserAuthContextProvider>
         </Col>
