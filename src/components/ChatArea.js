@@ -17,11 +17,11 @@ const Test = () => {
   };
   return (
     <>
-      <div>
+      <div className="subot">
         <iframe
           allow="microphone;"
           width="600"
-          height="550"
+          height="650"
           src="https://console.dialogflow.com/api-client/demo/embedded/f5efc3e7-1453-4ee9-8e74-e295034ccd24"
           className="link"
         ></iframe>

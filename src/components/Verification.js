@@ -19,7 +19,7 @@ function Verification(props) {
     if (sendvcode == vcode) {
       try {
         await logIn(email, password);
-        alert("You logged successfully");
+        // alert("You logged successfully");
         navigate("/chatarea");
         console.log("logged");
       } catch (error) {

@@ -1,5 +1,5 @@
 body {
-  background-image: url(./assets/images/background.png);
+  background-image: url(./assets/images/—Pngtree—laptop\ office\ desk_487477.jpg);
   background-size: cover;
   background-color: #fafafa;
   display: flex;
@@ -27,13 +27,12 @@ body {
   height: 38px !important;
 }
 
-
-.button-right{
+.button-right {
   display: flex;
   justify-content: flex-end;
 }
 
-#recaptcha-container{
+#recaptcha-container {
   margin: 20px;
 }
 
@@ -97,4 +96,3 @@ body {
 .reset div {
   margin-top: 8px;
 }
-
